@@ -58,12 +58,10 @@ func _process(delta):
 		last_y_input.erase(1.0)
 	
 func _physics_process(delta):
-	#print(position)
-	#apply gravity 
+
 	if velocity.y < MAX_FALL_SPEED:
 		velocity.y += get_currentgravity() * delta
-	
-	#restart when floor
+
 	if is_on_floor() and not is_dashing:
 		can_dash = true
 		
