@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://by3ur6to51boi"]
+
+[ext_resource type="Script" path="res://player/player_movement_component.gd" id="1_jmd0t"]
+
+[node name="PlayerMovementComponent" type="Node" node_paths=PackedStringArray("player")]
+script = ExtResource("1_jmd0t")
+player = NodePath("")
+
+[node name="coyote_time" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="coyote_time" to="." method="_on_coyote_time_timeout"]

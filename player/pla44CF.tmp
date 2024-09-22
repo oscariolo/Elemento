@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_w6lh7"]
 [ext_resource type="Texture2D" uid="uid://jptnfvltjv7t" path="res://player/assets/KnightPlaceholder/Spritesheet 128/Knight_1/Idle.png" id="2_mrj2o"]
-[ext_resource type="PackedScene" uid="uid://by3ur6to51boi" path="res://player/player_movement_component.tscn" id="3_hfk1g"]
+[ext_resource type="Script" path="res://player/player_movement_component.gd" id="3_rr5jl"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w1ynr"]
 size = Vector2(43, 65)
@@ -46,9 +46,6 @@ animations = [{
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_w6lh7")
 
-[node name="PlayerMovementComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_hfk1g")]
-player = NodePath("..")
-
 [node name="Hitbox" type="CollisionShape2D" parent="."]
 position = Vector2(4.5, 10.5)
 shape = SubResource("RectangleShape2D_w1ynr")
@@ -61,4 +58,11 @@ autoplay = "default"
 frame_progress = 0.534892
 centered = false
 
-[node name="Abilities" type="Node" parent="."]
+[node name="PlayerMovementComponent" type="Node" parent="."]
+script = ExtResource("3_rr5jl")
+
+[node name="coyote_time" type="Timer" parent="PlayerMovementComponent"]
+wait_time = 0.1
+one_shot = true
+
+[connection signal="timeout" from="PlayerMovementComponent/coyote_time" to="PlayerMovementComponent" method="_on_coyote_time_timeout"]

@@ -1,8 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://k6csmbchpdjc"]
+[gd_scene load_steps=5 format=3 uid="uid://k6csmbchpdjc"]
 
 [ext_resource type="PackedScene" uid="uid://bhawm7ey6kqju" path="res://player/player.tscn" id="1_kw41n"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_eo5ql"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_mpuu5"]
+size = Vector2(123, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_epnp0"]
+size = Vector2(126, 20)
 
 [node name="Testlevel" type="Node"]
 
@@ -14,3 +20,20 @@ position = Vector2(309, 305)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Ground"]
 position = Vector2(313.5, 359)
 shape = SubResource("WorldBoundaryShape2D_eo5ql")
+
+[node name="Ground2" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground2"]
+position = Vector2(321, 253)
+shape = SubResource("RectangleShape2D_mpuu5")
+
+[node name="Ground3" type="StaticBody2D" parent="."]
+position = Vector2(-71, -128)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground3"]
+position = Vector2(187, 449)
+shape = SubResource("RectangleShape2D_epnp0")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+texture_filter = 1
+position = Vector2(318, 179)
