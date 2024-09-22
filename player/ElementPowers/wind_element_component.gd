@@ -4,7 +4,11 @@ extends Node
 @export var slowing_velocity_factor: float = 50
 var current_boost_power: float = 0
 var charging_boost = false
+var just_boosted = false
 
+func _physics_process(delta: float) -> void:
+	if player.is_on_floor():
+		just_boosted = false
 
 func start_charge():
 	player.velocity.y = 0
@@ -20,3 +24,4 @@ func release_jump():
 	player.velocity.y -= current_boost_power
 	current_boost_power = 0
 	charging_boost = false
+	just_boosted = true
