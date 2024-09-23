@@ -2,12 +2,11 @@
 
 [ext_resource type="Script" path="res://player/player_movement_component.gd" id="1_jmd0t"]
 
-[node name="PlayerMovementComponent" type="Node" node_paths=PackedStringArray("player")]
+[node name="PlayerMovementComponent" type="Node"]
 script = ExtResource("1_jmd0t")
-player = NodePath("")
 
 [node name="coyote_time" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.15
 one_shot = true
 
 [connection signal="timeout" from="coyote_time" to="." method="_on_coyote_time_timeout"]

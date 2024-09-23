@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://bhawm7ey6kqju"]
+[gd_scene load_steps=12 format=3 uid="uid://bhawm7ey6kqju"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_w6lh7"]
 [ext_resource type="Texture2D" uid="uid://jptnfvltjv7t" path="res://player/assets/KnightPlaceholder/Spritesheet 128/Knight_1/Idle.png" id="2_mrj2o"]
 [ext_resource type="PackedScene" uid="uid://by3ur6to51boi" path="res://player/player_movement_component.tscn" id="3_hfk1g"]
 [ext_resource type="PackedScene" uid="uid://yc51bpjeudun" path="res://player/ElementPowers/wind_element_component.tscn" id="4_8mvl5"]
+[ext_resource type="Script" path="res://player/water_element_component.gd" id="5_5batw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w1ynr"]
 size = Vector2(43, 65)
@@ -64,5 +65,9 @@ centered = false
 
 [node name="Abilities" type="Node" parent="."]
 
-[node name="WindElementComponent" parent="Abilities" node_paths=PackedStringArray("player") instance=ExtResource("4_8mvl5")]
-player = NodePath("../..")
+[node name="WindElementComponent" parent="Abilities" node_paths=PackedStringArray("movement_component") instance=ExtResource("4_8mvl5")]
+movement_component = NodePath("../../PlayerMovementComponent")
+
+[node name="WaterElementComponent" type="Node" parent="Abilities" node_paths=PackedStringArray("movement_component")]
+script = ExtResource("5_5batw")
+movement_component = NodePath("../../PlayerMovementComponent")
