@@ -2,12 +2,10 @@ extends CharacterBody2D
 var elemental_abilities: Array[Element]
 
 func _ready() -> void:
-	for ability in $Abilities.get_children():
-		elemental_abilities.append(ability)
+	$Abilities.add_elemental_ability("wind")
 
 func _process(delta: float) -> void:
-	pass
+	print(velocity)
 
 func _physics_process(delta: float) -> void:
-	for ability in elemental_abilities:
-		ability.start()
+	pass

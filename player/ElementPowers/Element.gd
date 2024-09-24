@@ -1,6 +1,6 @@
 extends Node
-class_name Element 
-@export var movement_component:PlayerMovementComponent
+class_name Element
+#this would work only as an interface since no method is inhereted and each component has its own implementation
 
-func start() -> void:
+func load_properties(properties) -> void:
 	pass

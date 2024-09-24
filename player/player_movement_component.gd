@@ -8,7 +8,8 @@ var last_y_input = [0]
 
 #GRAVITY AND HORIZONTAL MOVEMENT
 @export var max_fall_speed = 350.0
-@export var max_walk_speed = 300.0
+@export var MAX_WALK_SPEED = 300.0
+var effective_max_walk_speed = 0
 @export_range(0,1) var on_air_movement_modifier = 0.2
 #const acc = 50.0
 #JUMP MECHANIC
@@ -72,9 +73,9 @@ func _walk_process(_delta):
 	else:
 		on_air_modifier = on_air_movement_modifier
 	if last_x_input.back() == 1:
-		player.velocity.x = lerp(player.velocity.x, max_walk_speed, 0.3 + on_air_modifier)
+		player.velocity.x = lerp(player.velocity.x, effective_max_walk_speed, 0.3 + on_air_modifier)
 	if last_x_input.back() == -1:
-		player.velocity.x = lerp(player.velocity.x,-max_walk_speed, 0.3 + on_air_modifier)
+		player.velocity.x = lerp(player.velocity.x,-effective_max_walk_speed, 0.3 + on_air_modifier)
 	if last_x_input.back() == 0:
 		player.velocity.x = lerp(player.velocity.x,0.0,0.4)	
 
@@ -114,6 +115,10 @@ func set_default_motion() -> void:
 	jump_velocity  = ((2.0 * jump_height) / jump_time_to_peak) * -1.0
 	jump_gravity = ((-2.0 * jump_height) / (jump_time_to_peak * jump_time_to_peak)) * -1.0
 	fall_gravity  = ((-2.0 * jump_height) / (jump_time_to_descent * jump_time_to_descent)) * -1.0
+	effective_max_walk_speed = MAX_WALK_SPEED
+
+func set_effective_walk_speed(value) -> void:
+	effective_max_walk_speed = value
 
 func set_motionless() -> void:
 	player.velocity.y = 0

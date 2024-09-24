@@ -6,9 +6,16 @@ var current_boost_power: float = 0
 var charging_boost = false
 var has_boosted = false
 @export var velocity_x_reduce: float  = 0.5
+@export var movement_component: PlayerMovementComponent
 
 
-func start() -> void:
+func load_properties(properties) -> void:
+	if movement_component == null:
+		for p in properties:
+			if p is PlayerMovementComponent:
+				movement_component = p
+
+func _physics_process(delta: float) -> void:
 	if movement_component.player.is_on_floor():
 		has_boosted = false
 	
@@ -29,12 +36,10 @@ func start_charge():
 
 func charge_jump():
 	movement_component.set_motionless()
+	movement_component.set_effective_walk_speed(movement_component.MAX_WALK_SPEED*velocity_x_reduce)  
 	current_boost_power += lerp(current_boost_power,max_boost_jump_velocity,0.1)
 	if current_boost_power >= max_boost_jump_velocity:
 		current_boost_power = max_boost_jump_velocity
-	
-	
-		
 	
 func release_jump():
 	if current_boost_power >= min_boost_jump:
