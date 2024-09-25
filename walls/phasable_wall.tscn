@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://da2o5ar75irqg"]
+
+[ext_resource type="Script" path="res://walls/phasable_wall.gd" id="1_savdv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ue86b"]
+size = Vector2(48, 115)
+
+[node name="PhasableWall" type="StaticBody2D"]
+collision_layer = 2
+collision_mask = 0
+script = ExtResource("1_savdv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ue86b")
+debug_color = Color(0.631556, 0.514666, 0.34684, 0.42)
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_ue86b")
+debug_color = Color(0.631556, 0.514666, 0.34684, 0.42)

@@ -25,6 +25,8 @@ var jump_timer_buffer = 0.0
 var is_jumping = false
 var jumped = false
 var can_coyote_jump = false
+#slide control
+var sliding = false
 
 func _ready() -> void:
 	set_default_motion()
@@ -46,6 +48,9 @@ func _inputControls(): #manage the input from player holding the last input so i
 	if Input.is_action_just_pressed("look_down"):
 		if 1.0 not in last_y_input:
 			last_y_input.append(1.0)
+	
+	if Input.is_action_just_pressed("slide"):
+		set_slide_motion()
 	
 	if Input.is_action_just_released("move_left"):
 		last_x_input.erase(-1.0)
@@ -125,6 +130,16 @@ func set_motionless() -> void:
 	fall_gravity = 0
 	jump_gravity = 0
 
+func set_slide_motion() -> void:
+	if !sliding:
+		sliding = true
+		effective_max_walk_speed = MAX_WALK_SPEED + 250
+		$slide_time.start()
 
 func _on_coyote_time_timeout() -> void:
 	can_coyote_jump = false
+
+
+func _on_slide_time_timeout() -> void:
+	set_default_motion()
+	sliding = false

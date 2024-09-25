@@ -1,6 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://k6csmbchpdjc"]
 
 [ext_resource type="PackedScene" uid="uid://bhawm7ey6kqju" path="res://player/player.tscn" id="1_kw41n"]
+[ext_resource type="PackedScene" uid="uid://da2o5ar75irqg" path="res://walls/phasable_wall.tscn" id="2_063j1"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_eo5ql"]
 
@@ -9,9 +10,6 @@ size = Vector2(123, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_epnp0"]
 size = Vector2(124, 20)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_ue86b"]
-size = Vector2(48, 115)
 
 [node name="Testlevel" type="Node"]
 
@@ -42,11 +40,5 @@ shape = SubResource("RectangleShape2D_epnp0")
 texture_filter = 1
 position = Vector2(318, 179)
 
-[node name="Ground4" type="StaticBody2D" parent="."]
-collision_layer = 2
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground4"]
-position = Vector2(468, 300)
-shape = SubResource("RectangleShape2D_ue86b")
-debug_color = Color(0.631556, 0.514666, 0.34684, 0.42)
+[node name="PhasableWall" parent="." instance=ExtResource("2_063j1")]
+position = Vector2(475, 300)

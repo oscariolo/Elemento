@@ -47,6 +47,8 @@ animations = [{
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_w6lh7")
 
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
 [node name="PlayerMovementComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_hfk1g")]
 player = NodePath("..")
 
