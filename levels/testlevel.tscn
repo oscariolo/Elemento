@@ -42,3 +42,9 @@ position = Vector2(318, 179)
 
 [node name="PhasableWall" parent="." instance=ExtResource("2_063j1")]
 position = Vector2(475, 300)
+
+[node name="PhasableWall2" parent="." instance=ExtResource("2_063j1")]
+position = Vector2(417, 100)
+
+[node name="PhasableWall3" parent="." instance=ExtResource("2_063j1")]
+position = Vector2(156, 218)

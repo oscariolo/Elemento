@@ -25,6 +25,10 @@ window/stretch/mode="viewport"
 window/stretch/aspect="expand"
 window/stretch/scale_mode="integer"
 
+[global_group]
+
+PhaseWall="All walls that contain a phasable state"
+
 [input]
 
 move_left={
