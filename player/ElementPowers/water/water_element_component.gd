@@ -4,6 +4,7 @@ extends Element
 var pull_out_speed: float = 1000
 var out_direction: Vector2
 var water_sliding:bool = false
+var inside_phasable_wall:bool = false
 
 
 func load_properties(properties) -> void:
@@ -16,21 +17,26 @@ func connect_phasable_walls_signals():
 		wall.connect("body_left",_on_body_left)
 
 func _physics_process(delta: float) -> void:
-	_check_inside_collision()
 	if Input.is_action_pressed("slide"):
 		player.set_collision_mask_value(2,false)
 		water_sliding = true
 	if Input.is_action_just_released("slide"):
-		water_sliding = false
+		water_sliding = false	
+	_check_inside_collision()
 
 func _check_inside_collision() -> void:
-	if !water_sliding && out_direction != Vector2.ZERO:
+	if !water_sliding && inside_phasable_wall:
 		player.velocity = out_direction * pull_out_speed
+	if !inside_phasable_wall && !water_sliding:
+		player.set_collision_mask_value(2,true)
+		
 
 func set_out_direction(wall_position:Vector2) -> void:
 	out_direction = (wall_position - player.global_position).normalized() as Vector2
+	inside_phasable_wall = true
+	
 
 func _on_body_left() -> void:
-	player.set_collision_mask_value(2,true)
 	out_direction = Vector2.ZERO	
+	inside_phasable_wall = false
 	

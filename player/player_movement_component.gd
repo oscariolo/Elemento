@@ -50,7 +50,9 @@ func _inputControls(): #manage the input from player holding the last input so i
 			last_y_input.append(1.0)
 	
 	if Input.is_action_just_pressed("slide"):
-		set_slide_motion()
+		set_slide_motion(true)
+	if Input.is_action_just_released("slide"):
+		set_slide_motion(false)
 	
 	if Input.is_action_just_released("move_left"):
 		last_x_input.erase(-1.0)
@@ -130,11 +132,12 @@ func set_motionless() -> void:
 	fall_gravity = 0
 	jump_gravity = 0
 
-func set_slide_motion() -> void:
-	if !sliding:
-		sliding = true
+func set_slide_motion(status:bool) -> void:
+	sliding = status
+	if sliding:
 		effective_max_walk_speed = MAX_WALK_SPEED + 250
-		$slide_time.start()
+	else:
+		set_default_motion()
 
 func _on_coyote_time_timeout() -> void:
 	can_coyote_jump = false
