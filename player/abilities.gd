@@ -6,3 +6,4 @@ func add_elemental_ability(elemental_string: String) -> void:
 	var new_ability = load(new_ability_path).instantiate() as Element
 	add_child(new_ability)
 	new_ability.load_properties(get_parent().get_children())
+	new_ability.connect_interactions()
