@@ -10,8 +10,10 @@ var inside_phasable_wall:bool = false
 
 func load_properties(properties) -> void:
 	player = properties[0].get_parent()
-	connect_phasable_walls_signals()
 
+func connect_interactions()-> void:
+	connect_phasable_walls_signals()
+	
 func connect_phasable_walls_signals():
 	for wall in get_tree().get_nodes_in_group("PhaseWall"):
 		wall.connect("relative_position",set_out_direction)
