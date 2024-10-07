@@ -1,8 +1,9 @@
 extends Element
 @export var shape_reduce_factor:float = 0.5
 @export var player: CharacterBody2D
-var pull_out_speed: float = 1000
+var pull_out_speed: float = 500
 var out_direction: Vector2
+var wall_reference_position: Vector2 = Vector2.ZERO
 var water_sliding:bool = false
 var inside_phasable_wall:bool = false
 
@@ -17,10 +18,15 @@ func connect_phasable_walls_signals():
 		wall.connect("body_left",_on_body_left)
 
 func _physics_process(delta: float) -> void:
+	
 	if Input.is_action_pressed("slide"):
 		player.set_collision_mask_value(2,false)
 		water_sliding = true
 	if Input.is_action_just_released("slide"):
+		if player.global_position.x >= wall_reference_position.x:
+			out_direction = Vector2(1,0)
+		else:
+			out_direction = Vector2(-1,0)
 		water_sliding = false	
 	_check_inside_collision()
 
@@ -32,7 +38,7 @@ func _check_inside_collision() -> void:
 		
 
 func set_out_direction(wall_position:Vector2) -> void:
-	out_direction = (wall_position - player.global_position).normalized() as Vector2
+	wall_reference_position = wall_position
 	inside_phasable_wall = true
 	
 

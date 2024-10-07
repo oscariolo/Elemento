@@ -13,7 +13,6 @@ func _process(delta: float) -> void:
 
 
 func _on_area_2d_body_entered(body: Node2D) -> void:
-	var position = $Area2D.global_position as Vector2
 	relative_position.emit(global_position)
 
 
