@@ -1,12 +1,40 @@
-[gd_scene load_steps=4 format=3 uid="uid://btotm7rjesqd3"]
+[gd_scene load_steps=6 format=3 uid="uid://btotm7rjesqd3"]
 
 [ext_resource type="Script" path="res://hazards/FireBall/fire_ball.gd" id="1_0e5xx"]
 [ext_resource type="Texture2D" uid="uid://4f416vrjvel8" path="res://hazards/FireBall/FireBall.png" id="2_paqmo"]
+
+[sub_resource type="Shader" id="Shader_brlwx"]
+code = "shader_type canvas_item;
+
+uniform float time; // Time to control the wobble animation
+uniform float frequency = 10.0; // Controls how fast it wobbles
+uniform float amplitude = 10.0; // Controls how much it wobbles
+
+void vertex() {
+    // Get the UV coordinates (relative position on the texture)
+    vec2 uv = UV;
+
+    // Calculate wobble based on sine waves and time
+    float wobble_x = sin(uv.x * frequency + TIME) * amplitude;
+    float wobble_y = sin(uv.y * frequency + TIME) * amplitude;
+
+    // Offset the vertex position by the wobble effect
+    VERTEX.x += wobble_x;
+    VERTEX.y += wobble_y;
+}
+"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t2ajm"]
+shader = SubResource("Shader_brlwx")
+shader_parameter/time = null
+shader_parameter/frequency = 5.0
+shader_parameter/amplitude = 10.0
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mfhws"]
 radius = 13.0
 
 [node name="FireBall" type="StaticBody2D"]
+material = SubResource("ShaderMaterial_t2ajm")
 script = ExtResource("1_0e5xx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -14,4 +42,5 @@ texture_filter = 1
 texture = ExtResource("2_paqmo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CircleShape2D_mfhws")

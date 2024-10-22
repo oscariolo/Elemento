@@ -1,12 +1,17 @@
-[gd_scene load_steps=11 format=3 uid="uid://bhawm7ey6kqju"]
+[gd_scene load_steps=13 format=3 uid="uid://bhawm7ey6kqju"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_w6lh7"]
 [ext_resource type="Texture2D" uid="uid://jptnfvltjv7t" path="res://player/assets/KnightPlaceholder/Spritesheet 128/Knight_1/Idle.png" id="2_mrj2o"]
 [ext_resource type="PackedScene" uid="uid://by3ur6to51boi" path="res://player/player_movement_component.tscn" id="3_hfk1g"]
+[ext_resource type="Shader" path="res://player/player_shader.gdshader" id="3_ihsme"]
 [ext_resource type="Script" path="res://player/abilities.gd" id="4_uf1ti"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w1ynr"]
 size = Vector2(43, 65)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bwtki"]
+shader = ExtResource("3_ihsme")
+shader_parameter/replacement_color = Color(0.381704, 0.139133, 0.0796353, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_hkij3"]
 atlas = ExtResource("2_mrj2o")
@@ -58,6 +63,7 @@ shape = SubResource("RectangleShape2D_w1ynr")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+material = SubResource("ShaderMaterial_bwtki")
 position = Vector2(-29, -85)
 sprite_frames = SubResource("SpriteFrames_bqmbt")
 autoplay = "default"
