@@ -59,3 +59,4 @@ position = Vector2(1.75, 0.5)
 shape = SubResource("RectangleShape2D_pb8bl")
 
 [connection signal="animation_finished" from="FireAttack/SliceAnimation" to="." method="_on_slice_animation_animation_finished"]
+[connection signal="area_entered" from="FireAttack/HitBox" to="." method="_on_hit_box_area_entered"]

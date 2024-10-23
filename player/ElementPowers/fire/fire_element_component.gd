@@ -1,6 +1,9 @@
 extends Element
 @export var player:CharacterBody2D
 
+func _ready() -> void:
+	$FireAttack/SliceAnimation.stop()
+	$FireAttack/HitBox/CollisionShape2D.disabled = true
 
 func load_properties(properties) -> void:
 	player = properties[0].get_parent()
@@ -11,9 +14,15 @@ func connect_interactions() -> void:
 func _process(delta: float) -> void:
 	$FireAttack.global_position = player.global_position + Vector2(30,0)
 	if Input.is_action_just_pressed("attack"):
-		$FireAttack/HitBox.visible = true
+		$FireAttack/HitBox/CollisionShape2D.disabled = false
 		$FireAttack/SliceAnimation.play("slice")
 
 
 func _on_slice_animation_animation_finished() -> void:
-	$FireAttack/HitBox.visible = false
+	$FireAttack/HitBox/CollisionShape2D.disabled = true
+
+
+func _on_hit_box_area_entered(area: Area2D) -> void:
+	if area.is_in_group("Projectile"):
+		area.direction = Vector2(area.direction.x*-1,0)
+	

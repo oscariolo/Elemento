@@ -5,7 +5,7 @@ var speed: float
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	speed = 0
+	speed = 200
 	direction = Vector2.RIGHT
 
 

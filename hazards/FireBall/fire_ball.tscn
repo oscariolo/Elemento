@@ -33,7 +33,7 @@ shader_parameter/amplitude = 10.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_mfhws"]
 radius = 13.0
 
-[node name="FireBall" type="StaticBody2D"]
+[node name="FireBall" type="Area2D" groups=["Projectile"]]
 material = SubResource("ShaderMaterial_t2ajm")
 script = ExtResource("1_0e5xx")
 
