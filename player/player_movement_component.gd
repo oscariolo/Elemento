@@ -27,6 +27,7 @@ var jumped = false
 var can_coyote_jump = false
 #slide control
 var sliding = false
+#facing
 
 func _ready() -> void:
 	set_default_motion()
@@ -36,9 +37,11 @@ func _process(_delta):
 
 func _inputControls(): #manage the input from player holding the last input so it can press multiple keys but priorize the last one
 	if Input.is_action_just_pressed("move_left"):
+		player.facing = Vector2.LEFT
 		if -1.0 not in last_x_input:
 			last_x_input.append(-1.0)
 	if Input.is_action_just_pressed("move_right"):
+		player.facing = Vector2.RIGHT
 		if 1.0 not in last_x_input:
 			last_x_input.append(1.0)
 	

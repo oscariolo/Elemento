@@ -1,48 +1,43 @@
-[gd_scene load_steps=13 format=3 uid="uid://bhawm7ey6kqju"]
+[gd_scene load_steps=11 format=3 uid="uid://bhawm7ey6kqju"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_w6lh7"]
-[ext_resource type="Texture2D" uid="uid://jptnfvltjv7t" path="res://player/assets/KnightPlaceholder/Spritesheet 128/Knight_1/Idle.png" id="2_mrj2o"]
 [ext_resource type="PackedScene" uid="uid://by3ur6to51boi" path="res://player/player_movement_component.tscn" id="3_hfk1g"]
-[ext_resource type="Shader" path="res://player/player_shader.gdshader" id="3_ihsme"]
+[ext_resource type="Texture2D" uid="uid://bydrvankvgwk6" path="res://player/assets/KnightPlaceholder/Knight_3/Idle.png" id="4_tmsuc"]
 [ext_resource type="Script" path="res://player/abilities.gd" id="4_uf1ti"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w1ynr"]
 size = Vector2(43, 65)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bwtki"]
-shader = ExtResource("3_ihsme")
-shader_parameter/replacement_color = Color(0.381704, 0.139133, 0.0796353, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_hm5nt"]
+atlas = ExtResource("4_tmsuc")
+region = Rect2(9, 0, 67, 86)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_hkij3"]
-atlas = ExtResource("2_mrj2o")
-region = Rect2(0, 0, 128, 128)
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bw8u"]
+atlas = ExtResource("4_tmsuc")
+region = Rect2(76, 0, 67, 86)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ry22m"]
-atlas = ExtResource("2_mrj2o")
-region = Rect2(128, 0, 128, 128)
+[sub_resource type="AtlasTexture" id="AtlasTexture_x50h5"]
+atlas = ExtResource("4_tmsuc")
+region = Rect2(143, 0, 67, 86)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_4i76x"]
-atlas = ExtResource("2_mrj2o")
-region = Rect2(256, 0, 128, 128)
+[sub_resource type="AtlasTexture" id="AtlasTexture_rd1w8"]
+atlas = ExtResource("4_tmsuc")
+region = Rect2(210, 0, 67, 86)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ebpum"]
-atlas = ExtResource("2_mrj2o")
-region = Rect2(384, 0, 128, 128)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_bqmbt"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_51ngk"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_hkij3")
+"texture": SubResource("AtlasTexture_hm5nt")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ry22m")
+"texture": SubResource("AtlasTexture_1bw8u")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_4i76x")
+"texture": SubResource("AtlasTexture_x50h5")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_ebpum")
+"texture": SubResource("AtlasTexture_rd1w8")
 }],
 "loop": true,
 "name": &"default",
@@ -52,23 +47,17 @@ animations = [{
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_w6lh7")
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-
 [node name="PlayerMovementComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_hfk1g")]
 player = NodePath("..")
 
 [node name="Hitbox" type="CollisionShape2D" parent="."]
-position = Vector2(4.5, 10.5)
 shape = SubResource("RectangleShape2D_w1ynr")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-texture_filter = 1
-material = SubResource("ShaderMaterial_bwtki")
-position = Vector2(-29, -85)
-sprite_frames = SubResource("SpriteFrames_bqmbt")
-autoplay = "default"
-frame_progress = 0.534892
-centered = false
 
 [node name="Abilities" type="Node" parent="."]
 script = ExtResource("4_uf1ti")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1, -10)
+sprite_frames = SubResource("SpriteFrames_51ngk")
+frame_progress = 0.623051

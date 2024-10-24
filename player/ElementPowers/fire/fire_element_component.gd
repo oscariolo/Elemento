@@ -12,10 +12,14 @@ func connect_interactions() -> void:
 	pass
 
 func _process(delta: float) -> void:
-	$FireAttack.global_position = player.global_position + Vector2(30,0)
+	$FireAttack.global_position = player.global_position + Vector2(30,0)*player.facing
 	if Input.is_action_just_pressed("attack"):
 		$FireAttack/HitBox/CollisionShape2D.disabled = false
 		$FireAttack/SliceAnimation.play("slice")
+		if player.facing == Vector2.RIGHT:
+			$FireAttack/SliceAnimation.flip_h = true
+		else:
+			$FireAttack/SliceAnimation.flip_h = false
 
 
 func _on_slice_animation_animation_finished() -> void:
