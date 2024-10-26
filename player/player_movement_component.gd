@@ -3,8 +3,8 @@ class_name PlayerMovementComponent
 
 @export var player: CharacterBody2D
 # Get the gravity from the project settings to be synced with RigidBody nodes.
-var last_x_input = [0]
-var last_y_input = [0]
+var last_x_input = []
+var last_y_input = []
 
 #GRAVITY AND HORIZONTAL MOVEMENT
 @export var max_fall_speed = 350.0
@@ -32,16 +32,15 @@ var sliding = false
 func _ready() -> void:
 	set_default_motion()
 
-func _process(_delta):	
+func _process(_delta):
+	_changefacing()	
 	_inputControls()
 
 func _inputControls(): #manage the input from player holding the last input so it can press multiple keys but priorize the last one
 	if Input.is_action_just_pressed("move_left"):
-		player.facing = Vector2.LEFT
 		if -1.0 not in last_x_input:
 			last_x_input.append(-1.0)
 	if Input.is_action_just_pressed("move_right"):
-		player.facing = Vector2.RIGHT
 		if 1.0 not in last_x_input:
 			last_x_input.append(1.0)
 	
@@ -65,35 +64,32 @@ func _inputControls(): #manage the input from player holding the last input so i
 		last_y_input.erase(-1.0)
 	if Input.is_action_just_released("look_down"):
 		last_y_input.erase(1.0)
-	
+		
 func _physics_process(delta):
-	
 	if player.velocity.y < max_fall_speed: #gravity gets updated given if its jumping or not
 		player.velocity.y += get_currentgravity() * delta
-		
 	_walk_process(delta) #manages walk process with special case for on air apex change
 	_jump_process(delta)
-	
-	
 
-func _walk_process(_delta): 
+func _walk_process(_delta):
 	var on_air_modifier = 0
 	if player.is_on_floor(): #acceleration change ensure speed apex
 		on_air_modifier = 0
 	else:
 		on_air_modifier = on_air_movement_modifier
-	if last_x_input.back() == 1:
-		player.velocity.x = lerp(player.velocity.x, effective_max_walk_speed, 0.3 + on_air_modifier)
-	if last_x_input.back() == -1:
-		player.velocity.x = lerp(player.velocity.x,-effective_max_walk_speed, 0.3 + on_air_modifier)
-	if last_x_input.back() == 0:
+	if !last_x_input.is_empty():
+		if last_x_input.back() == 1:
+			player.velocity.x = lerp(player.velocity.x, effective_max_walk_speed, 0.3 + on_air_modifier)
+		elif last_x_input.back() == -1:
+			player.velocity.x = lerp(player.velocity.x,-effective_max_walk_speed, 0.3 + on_air_modifier)
+	else:
 		player.velocity.x = lerp(player.velocity.x,0.0,0.4)	
-
+		
 func _jump_process(delta):
 	if player.is_on_floor():
 		is_jumping = false
 		jumped = false
-	
+		
 	if Input.is_action_just_pressed("jump"): #checks first for a jump input right before reaching the floor
 		jump_timer_buffer = 0.15
 	jump_timer_buffer -= delta
@@ -103,7 +99,7 @@ func _jump_process(delta):
 			jump_timer_buffer = 0.0
 			is_jumping = true
 			jumped = true
-	
+			
 	if Input.is_action_just_released("jump"): 
 		if player.velocity.y < max_fall_speed:
 			player.velocity.y = lerp(player.velocity.y,fall_gravity,0.05)
@@ -115,9 +111,7 @@ func _jump_process(delta):
 	if just_left_ledge:
 		$coyote_time.start()
 		can_coyote_jump = true
-	
-	
-	
+		
 func get_currentgravity() -> float:
 	return jump_gravity if player.velocity.y < 0.0 else fall_gravity
 
@@ -145,7 +139,13 @@ func set_slide_motion(status:bool) -> void:
 func _on_coyote_time_timeout() -> void:
 	can_coyote_jump = false
 
-
 func _on_slide_time_timeout() -> void:
 	set_default_motion()
 	sliding = false
+
+func _changefacing():
+	if !last_x_input.is_empty():
+		if last_x_input.back() == 1:
+			player.facing = Vector2.RIGHT
+		if last_x_input.back() == -1:
+			player.facing = Vector2.LEFT

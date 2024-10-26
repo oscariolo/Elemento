@@ -35,6 +35,7 @@ radius = 13.0
 
 [node name="FireBall" type="Area2D" groups=["Projectile"]]
 material = SubResource("ShaderMaterial_t2ajm")
+collision_layer = 8
 script = ExtResource("1_0e5xx")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -42,5 +43,4 @@ texture_filter = 1
 texture = ExtResource("2_paqmo")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 shape = SubResource("CircleShape2D_mfhws")
