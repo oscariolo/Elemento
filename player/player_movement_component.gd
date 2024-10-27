@@ -99,6 +99,8 @@ func _jump_process(delta):
 			jump_timer_buffer = 0.0
 			is_jumping = true
 			jumped = true
+	else:
+		jump_timer_buffer = -1  
 			
 	if Input.is_action_just_released("jump"): 
 		if player.velocity.y < max_fall_speed:
