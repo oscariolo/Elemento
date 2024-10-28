@@ -1,6 +1,6 @@
 extends Node2D
-var direction: Vector2
-var speed: float
+@export var direction: Vector2 = Vector2.LEFT
+@export var speed: float = 400
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

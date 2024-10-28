@@ -23,10 +23,12 @@ func _process(delta: float) -> void:
 		$AnimatedSprite2D.flip_h = false
 
 func player_hit():
-	life -= 1
-	if life == 0:
-		queue_free()
+	print("player hit")
+	
+	
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
 	var object = area.get_parent()
+	if object.is_in_group('Projectile'):
+		player_hit()
 	

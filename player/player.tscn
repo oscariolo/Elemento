@@ -5,6 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://bydrvankvgwk6" path="res://player/assets/KnightPlaceholder/Knight_3/Idle.png" id="4_tmsuc"]
 [ext_resource type="Script" path="res://player/abilities.gd" id="4_uf1ti"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wxi84"]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w1ynr"]
 size = Vector2(43, 65)
 
@@ -44,10 +46,15 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_wxi84"]
-
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_w6lh7")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_mask = 40
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_wxi84")
+debug_color = Color(0.129143, 0.558869, 0.868752, 0.42)
 
 [node name="PlayerMovementComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_hfk1g")]
 player = NodePath("..")
@@ -63,12 +70,5 @@ texture_filter = 1
 position = Vector2(-1, -10)
 sprite_frames = SubResource("SpriteFrames_51ngk")
 frame_progress = 0.623051
-
-[node name="Hitbox" type="Area2D" parent="."]
-collision_mask = 40
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource("RectangleShape2D_wxi84")
-debug_color = Color(0.129143, 0.558869, 0.868752, 0.42)
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

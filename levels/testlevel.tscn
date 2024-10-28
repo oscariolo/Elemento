@@ -88,4 +88,8 @@ tile_map_data = PackedByteArray("AAAQABYAAQACAAAAAAARABYAAQADAAAAAAASABYAAQABAAA
 tile_set = SubResource("TileSet_f7tt3")
 
 [node name="FireBall3" parent="." instance=ExtResource("4_uavgm")]
-position = Vector2(335, 283)
+position = Vector2(379, 326)
+speed = 100.0
+
+[node name="FireBall4" parent="." instance=ExtResource("4_uavgm")]
+position = Vector2(325, 264)
