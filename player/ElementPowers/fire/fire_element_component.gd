@@ -36,8 +36,9 @@ func _on_slice_animation_animation_finished() -> void:
 
 
 func _on_hit_box_area_entered(area: Area2D) -> void:
-	if area.is_in_group("Projectile"):
-		area.set_reflected(true)
+	var object = area.get_parent()
+	if object.is_in_group("Projectile"):
+		object.set_reflected(true)
 	
 
 
