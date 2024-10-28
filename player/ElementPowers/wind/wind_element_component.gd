@@ -1,6 +1,6 @@
 extends Element
 @export var max_boost_jump_velocity: float = 800
-var min_boost_jump: float = 300
+@export var min_boost_jump: float = 500
 @export var slowing_velocity_factor: float = 50
 var current_boost_power: float = 0
 var charging_boost = false
@@ -37,8 +37,7 @@ func start_charge():
 func charge_jump():
 	movement_component.set_motionless()
 	movement_component.set_effective_walk_speed(movement_component.MAX_WALK_SPEED*velocity_x_reduce)  
-	current_boost_power += lerp(current_boost_power,max_boost_jump_velocity,0.005)
-	print(current_boost_power)
+	current_boost_power += lerp(current_boost_power,max_boost_jump_velocity,0.00005)
 	if current_boost_power >= max_boost_jump_velocity:
 		current_boost_power = max_boost_jump_velocity
 	

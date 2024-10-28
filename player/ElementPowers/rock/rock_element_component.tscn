@@ -1,6 +1,17 @@
-[gd_scene load_steps=2 format=3 uid="uid://dq4ngvcvkjgmi"]
+[gd_scene load_steps=3 format=3 uid="uid://dq4ngvcvkjgmi"]
 
 [ext_resource type="Script" path="res://player/ElementPowers/rock/rock_element_component.gd" id="1_oq7ny"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tekxv"]
+
 [node name="RockElementComponent" type="Node"]
 script = ExtResource("1_oq7ny")
+
+[node name="ArmorHitbox" type="Area2D" parent="."]
+collision_mask = 40
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ArmorHitbox"]
+shape = SubResource("RectangleShape2D_tekxv")
+debug_color = Color(0.738179, 0.463171, 0.182737, 0.42)
+
+[connection signal="area_entered" from="ArmorHitbox" to="." method="_on_armor_hitbox_area_entered"]

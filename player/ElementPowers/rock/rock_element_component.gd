@@ -1,11 +1,19 @@
 extends Element
+var active:bool = true
+var player:CharacterBody2D
+
+func load_properties(properties):
+	player = properties[0].get_parent()
+	var armorShape = RectangleShape2D.new()
+	armorShape.set_size(player.playerSize)
+	$ArmorHitbox/CollisionShape2D.shape = armorShape
 
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
+func _physics_process(delta: float) -> void:
+	$ArmorHitbox.global_position = player.global_position
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _on_armor_hitbox_area_entered(area: Area2D) -> void:
+	print("hit armor")
+	if area.is_in_group('Projectile'):
+		active = false
