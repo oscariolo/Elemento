@@ -8,7 +8,7 @@ void fragment() {
 	float g_mask = 1.0 - rb_mask; //now its the opposite, mask of black (rb) and white (green)
 	float masked_to_green = g_mask * COLOR.g; //now by applying the mask to the green channel holds all values with green (remember white is 1).
 	//by multiplying we get the "shade" for each pixel that has green on it with the color of replacement
-	vec3 masked_replacement_color = replacement_color * masked_to_green; 
+	vec3 masked_replacement_color = replacement_color * masked_to_green;
 	//and now by adding that shade to the retained (remember that in retained black is 0) we get our final result of the masks
 	vec3 final_color =retained_color + masked_replacement_color;
 	COLOR.rgb = final_color;

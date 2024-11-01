@@ -79,6 +79,7 @@ animations = [{
 
 [node name="WindElementComponent" type="Node"]
 script = ExtResource("1_ehids")
+max_boost_jump_velocity = 500.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 rotation = 1.5708

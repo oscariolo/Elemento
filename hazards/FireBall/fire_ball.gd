@@ -4,8 +4,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	speed = 400
-	direction = Vector2.LEFT
+	pass
 
 func _physics_process(delta: float) -> void:
 	if direction == Vector2.RIGHT:

@@ -53,10 +53,10 @@ frame_progress = 0.00524857
 flip_h = true
 
 [node name="HitBox" type="Area2D" parent="FireAttack"]
+collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FireAttack/HitBox"]
-position = Vector2(1.75, 3.5)
 shape = SubResource("RectangleShape2D_pb8bl")
 
 [node name="EffectiveHitTimer" type="Timer" parent="."]

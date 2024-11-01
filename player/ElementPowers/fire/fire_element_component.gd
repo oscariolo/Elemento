@@ -10,12 +10,15 @@ func _ready() -> void:
 
 func load_properties(properties) -> void:
 	player = properties[0].get_parent()
+	var sliceShape = RectangleShape2D.new()
+	sliceShape.set_size(player.playerSize*1.8)
+	$FireAttack/HitBox/CollisionShape2D.shape =sliceShape
 
 func connect_interactions() -> void:
 	pass
 
 func _process(delta: float) -> void:
-	$FireAttack.global_position = player.global_position + Vector2(30,0)*player.facing
+	$FireAttack.global_position = player.global_position 
 	if Input.is_action_just_pressed("attack"):
 		hitting = true
 		$EffectiveHitTimer.start()
