@@ -51,9 +51,10 @@ func _inputControls(): #manage the input from player holding the last input so i
 		if 1.0 not in last_y_input:
 			last_y_input.append(1.0)
 	
-	if Input.is_action_just_pressed("slide"):
+	if Input.is_action_just_pressed("slide") && player.velocity.x != 0:
 		set_slide_motion(true)
 	if Input.is_action_just_released("slide"):
+		$slide_time.stop()
 		set_slide_motion(false)
 	
 	if Input.is_action_just_released("move_left"):
@@ -134,6 +135,7 @@ func set_motionless() -> void:
 func set_slide_motion(status:bool) -> void:
 	sliding = status
 	if sliding:
+		$slide_time.start()
 		effective_max_walk_speed = MAX_WALK_SPEED + 250
 	else:
 		set_default_motion()

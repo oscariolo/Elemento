@@ -10,7 +10,7 @@ wait_time = 0.15
 one_shot = true
 
 [node name="slide_time" type="Timer" parent="."]
-wait_time = 0.3
+wait_time = 0.4
 one_shot = true
 
 [connection signal="timeout" from="coyote_time" to="." method="_on_coyote_time_timeout"]

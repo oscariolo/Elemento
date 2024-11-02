@@ -1,4 +1,4 @@
-extends StaticBody2D
+extends StaticBody2D 
 signal relative_position(position:Vector2)
 signal body_left
 

@@ -1,0 +1,36 @@
+[gd_scene load_steps=4 format=4 uid="uid://xxwut7fg2rfr"]
+
+[ext_resource type="Texture2D" uid="uid://dhysmxxadu2se" path="res://environment/Grass.png" id="1_habj0"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_pckoi"]
+texture = ExtResource("1_habj0")
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+1:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+2:1/0 = 0
+2:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+3:1/0 = 0
+3:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+4:1/0 = 0
+4:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-8, -8, 8, -8, 8, 8, -8, 8)
+5:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_hwfca"]
+physics_layer_0/collision_layer = 2
+sources/2 = SubResource("TileSetAtlasSource_pckoi")
+
+[node name="TileMapLayer" type="TileMapLayer"]
+tile_map_data = PackedByteArray("AAAAAAAAAgACAAEAAAAAAAEAAgACAAEAAAAAAAIAAgACAAEAAAAAAAMAAgACAAEAAAAAAAQAAgACAAEAAAABAAQAAgACAAEAAAABAAMAAgACAAEAAAABAAIAAgACAAEAAAABAAEAAgACAAEAAAABAAAAAgACAAEAAAA=")
+tile_set = SubResource("TileSet_hwfca")
