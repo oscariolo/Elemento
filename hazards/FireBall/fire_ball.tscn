@@ -34,6 +34,7 @@ shader_parameter/amplitude = 10.0
 radius = 13.0
 
 [node name="FireBall" type="Node2D" groups=["Projectile"]]
+scale = Vector2(0.5, 0.5)
 script = ExtResource("1_0e5xx")
 
 [node name="FireBallHitBox" type="Area2D" parent="."]

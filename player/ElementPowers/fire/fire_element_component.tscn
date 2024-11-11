@@ -60,7 +60,7 @@ collision_mask = 8
 shape = SubResource("RectangleShape2D_pb8bl")
 
 [node name="EffectiveHitTimer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.5
 one_shot = true
 
 [connection signal="animation_finished" from="FireAttack/SliceAnimation" to="." method="_on_slice_animation_animation_finished"]

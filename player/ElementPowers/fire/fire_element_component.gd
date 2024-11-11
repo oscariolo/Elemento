@@ -11,7 +11,7 @@ func _ready() -> void:
 func load_properties(properties) -> void:
 	player = properties[0].get_parent()
 	var sliceShape = RectangleShape2D.new()
-	sliceShape.set_size(player.playerSize*1.8)
+	sliceShape.set_size(player.playerSize*2)
 	$FireAttack/HitBox/CollisionShape2D.shape =sliceShape
 
 func connect_interactions() -> void:

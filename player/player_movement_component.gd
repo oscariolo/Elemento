@@ -26,7 +26,9 @@ var is_jumping = false
 var jumped = false
 var can_coyote_jump = false
 #slide control
+@export var slide_min_x_speed:float = 500
 var sliding = false
+var can_slide = true
 #facing
 
 func _ready() -> void:
@@ -50,12 +52,10 @@ func _inputControls(): #manage the input from player holding the last input so i
 	if Input.is_action_just_pressed("look_down"):
 		if 1.0 not in last_y_input:
 			last_y_input.append(1.0)
-	
-	if Input.is_action_just_pressed("slide") && player.velocity.x != 0:
-		set_slide_motion(true)
+	if Input.is_action_just_pressed("slide") && abs(player.velocity.x) >=slide_min_x_speed && can_slide:
+		start_sliding()
 	if Input.is_action_just_released("slide"):
-		$slide_time.stop()
-		set_slide_motion(false)
+		stop_sliding()
 	
 	if Input.is_action_just_released("move_left"):
 		last_x_input.erase(-1.0)
@@ -132,13 +132,20 @@ func set_motionless() -> void:
 	fall_gravity = 0
 	jump_gravity = 0
 
-func set_slide_motion(status:bool) -> void:
-	sliding = status
+func start_sliding():
+	$slide_time.start()
+	sliding = true
+	effective_max_walk_speed = MAX_WALK_SPEED + 250
+
+func stop_sliding():
+	$slide_time.stop()
 	if sliding:
-		$slide_time.start()
-		effective_max_walk_speed = MAX_WALK_SPEED + 250
-	else:
-		set_default_motion()
+		$slide_cooldown.start()
+		can_slide = false
+	set_default_motion()
+	sliding = false
+	
+		
 
 func _on_coyote_time_timeout() -> void:
 	can_coyote_jump = false
@@ -153,3 +160,8 @@ func _changefacing():
 			player.facing = Vector2.RIGHT
 		if last_x_input.back() == -1:
 			player.facing = Vector2.LEFT
+
+
+func _on_slide_cooldown_timeout() -> void:
+	print('can slide')
+	can_slide = true

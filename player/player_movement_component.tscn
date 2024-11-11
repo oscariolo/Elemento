@@ -4,14 +4,20 @@
 
 [node name="PlayerMovementComponent" type="Node"]
 script = ExtResource("1_jmd0t")
+slide_min_x_speed = 200.0
 
 [node name="coyote_time" type="Timer" parent="."]
 wait_time = 0.15
 one_shot = true
 
 [node name="slide_time" type="Timer" parent="."]
+wait_time = 0.2
+one_shot = true
+
+[node name="slide_cooldown" type="Timer" parent="."]
 wait_time = 0.4
 one_shot = true
 
 [connection signal="timeout" from="coyote_time" to="." method="_on_coyote_time_timeout"]
 [connection signal="timeout" from="slide_time" to="." method="_on_slide_time_timeout"]
+[connection signal="timeout" from="slide_cooldown" to="." method="_on_slide_cooldown_timeout"]
