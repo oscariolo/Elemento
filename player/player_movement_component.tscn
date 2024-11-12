@@ -4,7 +4,7 @@
 
 [node name="PlayerMovementComponent" type="Node"]
 script = ExtResource("1_jmd0t")
-slide_min_x_speed = 200.0
+slide_min_x_speed = 100.0
 
 [node name="coyote_time" type="Timer" parent="."]
 wait_time = 0.15

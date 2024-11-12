@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bhawm7ey6kqju"]
+[gd_scene load_steps=37 format=3 uid="uid://bhawm7ey6kqju"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_w6lh7"]
 [ext_resource type="PackedScene" uid="uid://by3ur6to51boi" path="res://player/player_movement_component.tscn" id="3_hfk1g"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bwhegs8o3dhx5" path="res://player/assets/2 Punk/Punk_idle-export.png" id="6_m2hs1"]
 [ext_resource type="Texture2D" uid="uid://c4tcjhggmqxtt" path="res://player/assets/2 Punk/Punk_jump.png" id="7_ubkqe"]
 [ext_resource type="Texture2D" uid="uid://cq0a84jq7djqi" path="res://player/assets/2 Punk/sliding.png" id="8_awrc6"]
+[ext_resource type="Texture2D" uid="uid://b1at0s68kbw5x" path="res://player/assets/2 Punk/Punk_run.png" id="9_qkk5r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wxi84"]
 size = Vector2(19, 33)
@@ -43,6 +44,18 @@ region = Rect2(192, 0, 48, 48)
 atlas = ExtResource("5_lc0ps")
 region = Rect2(240, 0, 48, 48)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_7t38y"]
+atlas = ExtResource("7_ubkqe")
+region = Rect2(64, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k3ypr"]
+atlas = ExtResource("7_ubkqe")
+region = Rect2(96, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_82xit"]
+atlas = ExtResource("7_ubkqe")
+region = Rect2(32, 0, 32, 48)
+
 [sub_resource type="AtlasTexture" id="AtlasTexture_jk02g"]
 atlas = ExtResource("8_awrc6")
 region = Rect2(32, 0, 32, 48)
@@ -75,13 +88,29 @@ region = Rect2(0, 0, 32, 48)
 atlas = ExtResource("7_ubkqe")
 region = Rect2(32, 0, 32, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_p6rh2"]
-atlas = ExtResource("7_ubkqe")
+[sub_resource type="AtlasTexture" id="AtlasTexture_uhke4"]
+atlas = ExtResource("9_qkk5r")
+region = Rect2(0, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_exuss"]
+atlas = ExtResource("9_qkk5r")
+region = Rect2(32, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_it3mg"]
+atlas = ExtResource("9_qkk5r")
 region = Rect2(64, 0, 32, 48)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_j4btw"]
-atlas = ExtResource("7_ubkqe")
+[sub_resource type="AtlasTexture" id="AtlasTexture_61hby"]
+atlas = ExtResource("9_qkk5r")
 region = Rect2(96, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_558qh"]
+atlas = ExtResource("9_qkk5r")
+region = Rect2(128, 0, 32, 48)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8l5xt"]
+atlas = ExtResource("9_qkk5r")
+region = Rect2(160, 0, 32, 48)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_51ngk"]
 animations = [{
@@ -106,6 +135,20 @@ animations = [{
 }],
 "loop": true,
 "name": &"double jump",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7t38y")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k3ypr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_82xit")
+}],
+"loop": true,
+"name": &"fall",
 "speed": 5.0
 }, {
 "frames": [{
@@ -145,16 +188,33 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5qpkq")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p6rh2")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_j4btw")
 }],
 "loop": true,
 "name": &"jump",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uhke4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_exuss")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_it3mg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_61hby")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_558qh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8l5xt")
+}],
+"loop": true,
+"name": &"run",
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -191,9 +251,7 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_uwe2b")
 position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_51ngk")
-animation = &"get_up"
-frame = 2
-frame_progress = 1.0
+animation = &"fall"
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

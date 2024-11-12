@@ -9,6 +9,7 @@ enum State {
 	SLIDE,
 	IDLE_SLIDE,
 	GET_UP,
+	FALL
 }
 
 var current_state = State.IDLE
@@ -33,15 +34,20 @@ func _process(delta: float) -> void:
 		$AnimatedSprite2D.flip_h = true
 	else:
 		$AnimatedSprite2D.flip_h = false
-	
 	if $PlayerMovementComponent.sliding:
 		current_state = State.SLIDE
 	elif $PlayerMovementComponent.sliding == false && current_state == State.SLIDE:
 		current_state = State.GET_UP
 	elif $PlayerMovementComponent.jumped:
-		current_state = State.JUMP
+		if velocity.y >=0:
+			current_state = State.FALL
+		else:
+			current_state = State.JUMP
 	elif is_on_floor() && current_state != State.GET_UP:
-		current_state = State.IDLE
+		if abs(velocity.x) >= 50:
+			current_state = State.RUN
+		else:
+			current_state = State.IDLE
 		
 	
 	_animation_handler()
@@ -61,8 +67,11 @@ func _animation_handler():
 		State.GET_UP:
 			$AnimatedSprite2D.play("get_up")
 			await $AnimatedSprite2D.animation_finished
-			$AnimatedSprite2D.play("idle")
 			current_state = State.IDLE
+		State.RUN:
+			$AnimatedSprite2D.play("run")
+		State.FALL:
+			$AnimatedSprite2D.play("fall")
 			
 
 func _on_hitbox_area_entered(area: Area2D) -> void:
