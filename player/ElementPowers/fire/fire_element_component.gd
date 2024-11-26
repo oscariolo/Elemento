@@ -17,7 +17,7 @@ func load_properties(properties) -> void:
 func connect_interactions() -> void:
 	pass
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	$FireAttack.global_position = player.global_position 
 	if Input.is_action_just_pressed("attack"):
 		hitting = true

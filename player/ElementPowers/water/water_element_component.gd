@@ -19,7 +19,7 @@ func connect_phasable_walls_signals():
 		wall.connect("relative_position",set_out_direction)
 		wall.connect("body_left",_on_body_left)
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	
 	if Input.is_action_pressed("slide"):
 		player.set_collision_mask_value(2,false)

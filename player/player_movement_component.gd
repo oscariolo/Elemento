@@ -53,7 +53,8 @@ func _inputControls(): #manage the input from player holding the last input so i
 		if 1.0 not in last_y_input:
 			last_y_input.append(1.0)
 	if Input.is_action_just_pressed("slide") && abs(player.velocity.x) >=slide_min_x_speed && can_slide:
-		start_sliding()
+		if player.is_on_floor():
+			start_sliding()
 	if Input.is_action_just_released("slide"):
 		stop_sliding()
 	
@@ -163,5 +164,4 @@ func _changefacing():
 
 
 func _on_slide_cooldown_timeout() -> void:
-	print('can slide')
 	can_slide = true

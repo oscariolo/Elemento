@@ -15,7 +15,7 @@ func load_properties(properties) -> void:
 			if p is PlayerMovementComponent:
 				movement_component = p
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if movement_component.player.is_on_floor():
 		has_boosted = false
 	if !has_boosted: #check wether has boosted before can only once

@@ -1,14 +1,21 @@
-[gd_scene load_steps=37 format=3 uid="uid://bhawm7ey6kqju"]
+[gd_scene load_steps=44 format=3 uid="uid://bhawm7ey6kqju"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_w6lh7"]
+[ext_resource type="Script" path="res://player/animation_state_machine.gd" id="2_0hpk4"]
+[ext_resource type="Script" path="res://player/Animations/Idle.gd" id="3_ceerj"]
 [ext_resource type="PackedScene" uid="uid://by3ur6to51boi" path="res://player/player_movement_component.tscn" id="3_hfk1g"]
 [ext_resource type="Shader" path="res://player/player_shader.gdshader" id="4_rt4qv"]
 [ext_resource type="Script" path="res://player/abilities.gd" id="4_uf1ti"]
 [ext_resource type="Texture2D" uid="uid://r540ppv0ubcl" path="res://player/assets/2 Punk/Punk_doublejump.png" id="5_lc0ps"]
+[ext_resource type="Script" path="res://player/Animations/Run.gd" id="6_jr4b4"]
 [ext_resource type="Texture2D" uid="uid://bwhegs8o3dhx5" path="res://player/assets/2 Punk/Punk_idle-export.png" id="6_m2hs1"]
+[ext_resource type="Script" path="res://player/Animations/Jump.gd" id="7_ddhl5"]
 [ext_resource type="Texture2D" uid="uid://c4tcjhggmqxtt" path="res://player/assets/2 Punk/Punk_jump.png" id="7_ubkqe"]
 [ext_resource type="Texture2D" uid="uid://cq0a84jq7djqi" path="res://player/assets/2 Punk/sliding.png" id="8_awrc6"]
+[ext_resource type="Script" path="res://player/Animations/Fall.gd" id="8_wxuog"]
+[ext_resource type="Script" path="res://player/Animations/Slide.gd" id="9_cgskp"]
 [ext_resource type="Texture2D" uid="uid://b1at0s68kbw5x" path="res://player/assets/2 Punk/Punk_run.png" id="9_qkk5r"]
+[ext_resource type="Script" path="res://player/Animations/GetUp.gd" id="10_u06ga"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wxi84"]
 size = Vector2(19, 33)
@@ -147,7 +154,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_82xit")
 }],
-"loop": true,
+"loop": false,
 "name": &"fall",
 "speed": 5.0
 }, {
@@ -189,7 +196,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_5qpkq")
 }],
-"loop": true,
+"loop": false,
 "name": &"jump",
 "speed": 5.0
 }, {
@@ -246,12 +253,35 @@ shape = SubResource("RectangleShape2D_w1ynr")
 [node name="Abilities" type="Node" parent="."]
 script = ExtResource("4_uf1ti")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="AnimationStateMachine" type="Node2D" parent="." node_paths=PackedStringArray("initial_state", "animationSpritesPlayer", "this_player")]
+script = ExtResource("2_0hpk4")
+initial_state = NodePath("Idle")
+animationSpritesPlayer = NodePath("../AnimationSprites")
+this_player = NodePath("..")
+
+[node name="Idle" type="Node" parent="AnimationStateMachine"]
+script = ExtResource("3_ceerj")
+
+[node name="Run" type="Node" parent="AnimationStateMachine"]
+script = ExtResource("6_jr4b4")
+
+[node name="Jump" type="Node" parent="AnimationStateMachine"]
+script = ExtResource("7_ddhl5")
+
+[node name="Fall" type="Node" parent="AnimationStateMachine"]
+script = ExtResource("8_wxuog")
+
+[node name="Slide" type="Node" parent="AnimationStateMachine"]
+script = ExtResource("9_cgskp")
+
+[node name="GetUp" type="Node" parent="AnimationStateMachine"]
+script = ExtResource("10_u06ga")
+
+[node name="AnimationSprites" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 material = SubResource("ShaderMaterial_uwe2b")
 position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_51ngk")
-animation = &"fall"
+animation = &"get_up"
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]
-[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
