@@ -1,15 +1,11 @@
 extends Element
 @export var shape_reduce_factor:float = 0.5
-@export var player: CharacterBody2D
 var pull_out_speed: float = 500
 var out_direction: Vector2
 var wall_reference_position: Vector2 = Vector2.ZERO
 var water_sliding:bool = false
 var inside_phasable_wall:bool = false
 
-
-func load_properties(properties) -> void:
-	player = properties[0].get_parent()
 
 func connect_interactions()-> void:
 	connect_phasable_walls_signals()

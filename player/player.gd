@@ -8,7 +8,7 @@ func _ready() -> void:
 	$Abilities.add_elemental_ability("water")
 	$Abilities.add_elemental_ability('wind')
 	$Abilities.add_elemental_ability('fire')
-	#$Abilities.add_elemental_ability('rock')
+	$Abilities.add_elemental_ability('rock')
 
 func _set_properties_attributes():
 	var player_shape = RectangleShape2D.new()

@@ -1,15 +1,14 @@
 extends Element
 var armor_is_active:bool = true
-@export var player:CharacterBody2D
 var player_hitbox:Area2D
 
-func load_properties(properties):
-	player_hitbox = properties[0]
+func load_properties():
+	player_hitbox = player.get_node('Hitbox')
 	player = player_hitbox.get_parent()
 	var armorShape = RectangleShape2D.new()
 	armorShape.set_size(player.playerSize)
 	$ArmorHitbox/CollisionShape2D.shape = armorShape
-	player.get_child(0).monitoring = false
+	player.get_node('Hitbox').monitoring = false
 
 
 func _physics_process(delta: float) -> void:

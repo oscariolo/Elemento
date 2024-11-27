@@ -12,5 +12,5 @@ func update():
 		transition.emit(self,'idle')
 	if Input.is_action_just_pressed("jump"):
 		transition.emit(self,'jump')
-	if !player.get_child(1).sliding:
+	if !player.get_node('PlayerMovementComponent').sliding:
 		transition.emit(self,'getup')

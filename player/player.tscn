@@ -237,16 +237,16 @@ collision_mask = 40
 script = ExtResource("1_w6lh7")
 playerSize = Vector2(15, 33)
 
+[node name="PlayerMovementComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_hfk1g")]
+player = NodePath("..")
+jump_height = 80.0
+
 [node name="Hitbox" type="Area2D" parent="."]
 collision_mask = 40
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("RectangleShape2D_wxi84")
 debug_color = Color(0.741198, 0, 0.303566, 0.42)
-
-[node name="PlayerMovementComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_hfk1g")]
-player = NodePath("..")
-jump_height = 80.0
 
 [node name="PlayerCollisionArea" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_w1ynr")

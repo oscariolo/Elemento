@@ -9,11 +9,8 @@ var has_boosted = false
 @export var movement_component: PlayerMovementComponent
 
 
-func load_properties(properties) -> void:
-	if movement_component == null:
-		for p in properties:
-			if p is PlayerMovementComponent:
-				movement_component = p
+func load_properties() -> void:
+	movement_component = player.get_node('PlayerMovementComponent')
 
 func _physics_process(_delta: float) -> void:
 	if movement_component.player.is_on_floor():

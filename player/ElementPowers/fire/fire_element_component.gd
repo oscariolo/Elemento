@@ -1,5 +1,4 @@
 extends Element
-@export var player:CharacterBody2D
 var hitting: bool = false
 @export var effective_hit_time:float = 0.1
 
@@ -8,8 +7,7 @@ func _ready() -> void:
 	$FireAttack/HitBox/CollisionShape2D.disabled = true
 	$EffectiveHitTimer.wait_time = effective_hit_time
 
-func load_properties(properties) -> void:
-	player = properties[0].get_parent()
+func load_properties() -> void:
 	var sliceShape = RectangleShape2D.new()
 	sliceShape.set_size(player.playerSize*2)
 	$FireAttack/HitBox/CollisionShape2D.shape =sliceShape
