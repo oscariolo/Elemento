@@ -14,9 +14,6 @@ func load_properties(properties) -> void:
 	sliceShape.set_size(player.playerSize*2)
 	$FireAttack/HitBox/CollisionShape2D.shape =sliceShape
 
-func connect_interactions() -> void:
-	pass
-
 func _process(_delta: float) -> void:
 	$FireAttack.global_position = player.global_position 
 	if Input.is_action_just_pressed("attack"):

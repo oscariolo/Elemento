@@ -17,12 +17,10 @@ func _physics_process(delta: float) -> void:
 
 
 func regenerate_armor():
-	print("armor regenerate")
 	player_hitbox.monitoring = false
 	armor_is_active = true
 
 func break_armor():
-	print("armor broke")
 	$ArmorCooldownTimer.start()
 	player_hitbox.monitoring = true
 	armor_is_active = false

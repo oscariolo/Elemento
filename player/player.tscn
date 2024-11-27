@@ -18,10 +18,10 @@
 [ext_resource type="Script" path="res://player/Animations/GetUp.gd" id="10_u06ga"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_wxi84"]
-size = Vector2(19, 33)
+size = Vector2(10, 29)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_w1ynr"]
-size = Vector2(19, 33)
+size = Vector2(10, 30)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uwe2b"]
 shader = ExtResource("4_rt4qv")
@@ -235,13 +235,14 @@ animations = [{
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 40
 script = ExtResource("1_w6lh7")
+playerSize = Vector2(15, 33)
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_mask = 40
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("RectangleShape2D_wxi84")
-debug_color = Color(0.129143, 0.558869, 0.868752, 0.42)
+debug_color = Color(0.741198, 0, 0.303566, 0.42)
 
 [node name="PlayerMovementComponent" parent="." node_paths=PackedStringArray("player") instance=ExtResource("3_hfk1g")]
 player = NodePath("..")
@@ -249,6 +250,7 @@ jump_height = 80.0
 
 [node name="PlayerCollisionArea" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_w1ynr")
+debug_color = Color(0, 0.626531, 0.510299, 0.42)
 
 [node name="Abilities" type="Node" parent="."]
 script = ExtResource("4_uf1ti")

@@ -41,6 +41,7 @@ size = Vector2(28.5, 65)
 
 [node name="FireElementComponent" type="Node"]
 script = ExtResource("1_5t8kq")
+effective_hit_time = 0.5
 
 [node name="FireAttack" type="Node2D" parent="."]
 
@@ -54,7 +55,7 @@ flip_h = true
 
 [node name="HitBox" type="Area2D" parent="FireAttack"]
 collision_layer = 0
-collision_mask = 8
+collision_mask = 24
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="FireAttack/HitBox"]
 shape = SubResource("RectangleShape2D_pb8bl")
