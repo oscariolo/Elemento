@@ -1,7 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dcx7t20cr107b"]
+[gd_scene load_steps=8 format=3 uid="uid://dcx7t20cr107b"]
 
+[ext_resource type="Script" path="res://Menus/main_menu.gd" id="1_3ng8l"]
 [ext_resource type="Shader" path="res://Menus/main_menu.gdshader" id="1_biqop"]
 [ext_resource type="Script" path="res://Menus/color_rect.gd" id="2_ov7cy"]
+[ext_resource type="FontFile" uid="uid://mxvrxnsvrnvd" path="res://fonts/ThaleahFat.ttf" id="3_x01dc"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_hu258"]
 shader = ExtResource("1_biqop")
@@ -12,13 +14,27 @@ shader_parameter/wave_size = 4.39
 shader_parameter/wave_time_mul = 0.5
 shader_parameter/total_phases = 15
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_06kch"]
+bg_color = Color(0, 0, 0, 0.74902)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+anti_aliasing = false
+
+[sub_resource type="Theme" id="Theme_5cct4"]
+Button/fonts/font = ExtResource("3_x01dc")
+Button/styles/normal = SubResource("StyleBoxFlat_06kch")
+
 [node name="MainMenu" type="Control"]
+texture_filter = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_3ng8l")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 material = SubResource("ShaderMaterial_hu258")
@@ -32,15 +48,20 @@ color = Color(0.784314, 0, 0, 1)
 script = ExtResource("2_ov7cy")
 
 [node name="Title" type="Label" parent="."]
+texture_filter = 1
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -37.0
-offset_top = 50.0
-offset_right = 37.0
-offset_bottom = 73.0
+anchors_preset = -1
+anchor_left = 0.499
+anchor_top = 0.003
+anchor_right = 0.499
+anchor_bottom = 0.003
+offset_left = -92.36
+offset_top = 21.92
+offset_right = -29.36
+offset_bottom = 36.92
 grow_horizontal = 2
+scale = Vector2(3, 3)
+theme_override_fonts/font = ExtResource("3_x01dc")
 text = "Elemento"
 
 [node name="MenuOptions" type="VBoxContainer" parent="."]
@@ -56,8 +77,10 @@ offset_right = 112.0
 offset_bottom = 81.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_5cct4")
 
 [node name="NewGame" type="Button" parent="MenuOptions"]
+texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
 text = "New Game"
@@ -71,3 +94,6 @@ text = "Options"
 layout_mode = 2
 size_flags_vertical = 3
 text = "Exit"
+
+[connection signal="pressed" from="MenuOptions/NewGame" to="." method="_on_new_game_pressed"]
+[connection signal="pressed" from="MenuOptions/Exit" to="." method="_on_exit_pressed"]
