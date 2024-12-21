@@ -2,7 +2,7 @@ extends CharacterBody2D
 var facing:Vector2 = Vector2.RIGHT
 @export var playerSize:Vector2 = Vector2(19,33)
 @onready var playerSizeSliding:Vector2 = Vector2(playerSize.x,playerSize.y/2)
-var life:int = 1	
+var life:int = 1
 
 func _ready() -> void:
 	$Hitbox/CollisionShape2D.shape.size = playerSize
@@ -12,7 +12,7 @@ func _ready() -> void:
 	$Abilities.add_elemental_ability('fire')
 	$Abilities.add_elemental_ability('rock')
 	
-
+	# "target" is the Canvas item which material contains the shader.
 
 func _change_player_collision_to_sliding(change:bool = true):
 	var collisionShape = $PlayerCollisionShape
@@ -28,10 +28,11 @@ func _change_player_collision_to_sliding(change:bool = true):
 		collisionShape.position.y = 0
 		$Hitbox/CollisionShape2D.position.y = 0
 		$Hitbox/CollisionShape2D.shape.size = playerSizeSliding
-	
-	
+
+
 
 func _process(_delta: float) -> void:
+	
 	if Input.is_action_pressed("slide") && $PlayerMovementComponent.sliding:
 		_change_player_collision_to_sliding()
 	else:

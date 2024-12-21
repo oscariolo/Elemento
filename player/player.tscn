@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bhawm7ey6kqju"]
+[gd_scene load_steps=45 format=3 uid="uid://bhawm7ey6kqju"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_w6lh7"]
 [ext_resource type="Script" path="res://player/animation_state_machine.gd" id="2_0hpk4"]
@@ -25,7 +25,6 @@ size = Vector2(10, 32)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_uwe2b"]
 shader = ExtResource("4_rt4qv")
-shader_parameter/replacement_color = Color(0.649205, 1, 0.988779, 1)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_33nb2"]
 atlas = ExtResource("5_lc0ps")
@@ -232,8 +231,12 @@ animations = [{
 "speed": 1.0
 }]
 
+[sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_7cmus"]
+polygon = PackedVector2Array(7, 16, -7, 16, -7, 17, 7, 17)
+
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 40
+light_mask = 2
+collision_mask = 62
 script = ExtResource("1_w6lh7")
 playerSize = Vector2(10, 31)
 
@@ -284,6 +287,11 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_uwe2b")
 position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_51ngk")
-animation = &"idle"
+animation = &"get_up"
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="AnimationSprites"]
+position = Vector2(0, 7)
+occluder = SubResource("OccluderPolygon2D_7cmus")
+occluder_light_mask = 2
 
 [connection signal="area_entered" from="Hitbox" to="." method="_on_hitbox_area_entered"]

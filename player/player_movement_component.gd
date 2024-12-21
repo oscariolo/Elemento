@@ -29,6 +29,7 @@ var can_coyote_jump = false
 @export var slide_min_x_speed:float = 500
 var sliding = false
 var can_slide = true
+var slide_jump_buffer = 0.0
 #facing
 
 func _ready() -> void:
@@ -52,12 +53,6 @@ func _inputControls(): #manage the input from player holding the last input so i
 	if Input.is_action_just_pressed("look_down"):
 		if 1.0 not in last_y_input:
 			last_y_input.append(1.0)
-	if Input.is_action_just_pressed("slide") && abs(player.velocity.x) >=slide_min_x_speed && can_slide:
-		if player.is_on_floor():
-			start_sliding()
-	if Input.is_action_just_released("slide"):
-		stop_sliding()
-	
 	if Input.is_action_just_released("move_left"):
 		last_x_input.erase(-1.0)
 	if Input.is_action_just_released("move_right"):
@@ -72,6 +67,7 @@ func _physics_process(delta):
 		player.velocity.y += get_currentgravity() * delta
 	_walk_process(delta) #manages walk process with special case for on air apex change
 	_jump_process(delta)
+	_slide_process(delta)
 
 func _walk_process(_delta):
 	var on_air_modifier = 0
@@ -132,6 +128,17 @@ func set_motionless() -> void:
 	player.velocity.y = 0
 	fall_gravity = 0
 	jump_gravity = 0
+
+func _slide_process(delta):
+	if Input.is_action_just_released("slide"):
+		stop_sliding()
+	slide_jump_buffer -= delta
+	if Input.is_action_just_pressed("slide") && abs(player.velocity.x) >=slide_min_x_speed && can_slide:
+		slide_jump_buffer = 0.15
+		if player.is_on_floor():
+			start_sliding()
+	#if slide_jump_buffer > 0 && player.is_on_floor():
+		#start_sliding()
 
 func start_sliding():
 	$slide_time.start()

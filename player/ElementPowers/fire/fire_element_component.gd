@@ -8,9 +8,10 @@ func _ready() -> void:
 	$EffectiveHitTimer.wait_time = effective_hit_time
 
 func load_properties() -> void:
-	var sliceShape = RectangleShape2D.new()
-	sliceShape.set_size(player.playerSize*2)
-	$FireAttack/HitBox/CollisionShape2D.shape =sliceShape
+	#var sliceShape = RectangleShape2D.new()
+	#sliceShape.set_size(player.playerSize*2)
+	#$FireAttack/HitBox/CollisionShape2D.shape =sliceShape
+	pass
 
 func _process(_delta: float) -> void:
 	$FireAttack.global_position = player.global_position 

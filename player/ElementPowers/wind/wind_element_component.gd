@@ -32,6 +32,8 @@ func start_charge():
 	charging_boost = true
 
 func charge_jump():
+	$AnimatedSprite2D.global_position = movement_component.player.global_position + Vector2(0,20)
+	$AnimatedSprite2D.play("charging_jump")
 	movement_component.set_motionless()
 	movement_component.set_effective_walk_speed(movement_component.MAX_WALK_SPEED*velocity_x_reduce)  
 	current_boost_power += lerp(current_boost_power,max_boost_jump_velocity,0.00005)
@@ -40,7 +42,7 @@ func charge_jump():
 	
 func release_jump():
 	$AnimatedSprite2D.global_position = movement_component.player.global_position + Vector2(0,50)
-	$AnimatedSprite2D.play("default")
+	$AnimatedSprite2D.play("released_jump")
 	if current_boost_power >= min_boost_jump:
 		movement_component.player.velocity.y -= current_boost_power
 	else:

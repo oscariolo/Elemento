@@ -8,7 +8,7 @@ func exit():
 	animation_player.stop()
 
 func update():
-	if !Input.is_action_pressed('ui_left') && !Input.is_action_pressed('ui_right'):
+	if abs(player.velocity.x) == 0:
 		transition.emit(self,'idle')
 	if Input.is_action_just_pressed("jump"):
 		transition.emit(self,'jump')
