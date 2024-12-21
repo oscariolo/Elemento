@@ -16,6 +16,8 @@ shader_parameter/total_phases = 15
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_06kch"]
 bg_color = Color(0, 0, 0, 0.74902)
+border_width_left = 30
+border_color = Color(0, 0, 0, 0.490196)
 corner_radius_top_left = 50
 corner_radius_top_right = 50
 corner_radius_bottom_right = 50
@@ -24,6 +26,7 @@ anti_aliasing = false
 
 [sub_resource type="Theme" id="Theme_5cct4"]
 Button/fonts/font = ExtResource("3_x01dc")
+Button/styles/hover = SubResource("StyleBoxFlat_06kch")
 Button/styles/normal = SubResource("StyleBoxFlat_06kch")
 
 [node name="MainMenu" type="Control"]

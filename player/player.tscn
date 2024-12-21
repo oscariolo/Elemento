@@ -287,7 +287,7 @@ texture_filter = 1
 material = SubResource("ShaderMaterial_uwe2b")
 position = Vector2(0, -7)
 sprite_frames = SubResource("SpriteFrames_51ngk")
-animation = &"get_up"
+animation = &"fall"
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="AnimationSprites"]
 position = Vector2(0, 7)

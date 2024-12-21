@@ -24,6 +24,7 @@ window/size/window_width_override=640
 window/size/window_height_override=360
 window/stretch/mode="viewport"
 window/stretch/aspect="expand"
+window/stretch/scale_mode="integer"
 window/vsync/vsync_mode=0
 
 [global_group]
@@ -77,6 +78,10 @@ attack={
 2d_physics/layer_4="Projectile"
 2d_physics/layer_5="ReflectedProjectile"
 2d_physics/layer_6="Enemy"
+
+[physics]
+
+common/physics_ticks_per_second=200
 
 [rendering]
 
