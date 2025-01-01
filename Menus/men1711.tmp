@@ -1,0 +1,49 @@
+[gd_scene load_steps=3 format=3 uid="uid://cccatn4s61y4q"]
+
+[ext_resource type="Theme" uid="uid://b83wwluo43jf" path="res://Menus/main_menu.tres" id="1_ogswf"]
+[ext_resource type="Script" path="res://Menus/menu_settings.gd" id="2_3i80t"]
+
+[node name="MenuSettings" type="VBoxContainer"]
+texture_filter = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_ogswf")
+script = ExtResource("2_3i80t")
+
+[node name="FullScreen" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="FullScreen"]
+layout_mode = 2
+text = "Full Screen: "
+
+[node name="CheckBox" type="CheckBox" parent="FullScreen"]
+layout_mode = 2
+
+[node name="Resolution" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Resolution"]
+layout_mode = 2
+text = "Resolution: "
+
+[node name="OptionButton" type="OptionButton" parent="Resolution"]
+layout_mode = 2
+item_count = 3
+popup/item_0/text = "1920 x 1080"
+popup/item_1/text = "1366 x 768"
+popup/item_1/id = 1
+popup/item_2/text = "1280 x 720"
+popup/item_2/id = 2
+
+[connection signal="pressed" from="FullScreen/CheckBox" to="." method="_on_check_box_pressed"]
+[connection signal="item_selected" from="Resolution/OptionButton" to="." method="_on_option_button_item_selected"]

@@ -290,6 +290,7 @@ sprite_frames = SubResource("SpriteFrames_51ngk")
 animation = &"fall"
 
 [node name="LightOccluder2D" type="LightOccluder2D" parent="AnimationSprites"]
+texture_filter = 1
 position = Vector2(0, 7)
 occluder = SubResource("OccluderPolygon2D_7cmus")
 occluder_light_mask = 2
