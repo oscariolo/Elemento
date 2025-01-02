@@ -38,17 +38,11 @@ text = "Resolution: "
 
 [node name="OptionButton" type="OptionButton" parent="Resolution"]
 layout_mode = 2
-item_count = 3
-popup/item_0/text = "1920 x 1080"
-popup/item_1/text = "1366 x 768"
-popup/item_1/id = 1
-popup/item_2/text = "1280 x 720"
-popup/item_2/id = 2
 
-[node name="Button" type="Button" parent="."]
+[node name="ExitSettings" type="Button" parent="."]
 layout_mode = 2
 text = "Go back"
 
 [connection signal="pressed" from="FullScreen/CheckBox" to="." method="_on_check_box_pressed"]
 [connection signal="item_selected" from="Resolution/OptionButton" to="." method="_on_option_button_item_selected"]
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="ExitSettings" to="." method="_on_button_pressed"]
