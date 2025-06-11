@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dl7h177310hjh"]
 
-[ext_resource type="Script" path="res://player/ElementPowers/water/water_element_component.gd" id="1_21owp"]
+[ext_resource type="Script" uid="uid://c7e4668ayqua" path="res://player/ElementPowers/water/water_element_component.gd" id="1_21owp"]
 
 [node name="WaterElementComponent" type="Node"]
 script = ExtResource("1_21owp")

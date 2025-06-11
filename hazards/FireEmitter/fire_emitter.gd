@@ -15,7 +15,7 @@ func _process(delta: float) -> void:
 func _on_emition_cooldown_timeout() -> void:
 	var new_fireball = fireball.instantiate()
 	new_fireball.direction = output
-	new_fireball.global_position = global_position
+	new_fireball.global_position = $Marker2D.global_position
 	get_parent().add_child(new_fireball)
 	
 	

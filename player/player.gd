@@ -7,11 +7,6 @@ var life:int = 1
 func _ready() -> void:
 	$Hitbox/CollisionShape2D.shape.size = playerSize
 	$PlayerCollisionShape.shape.size = playerSize
-	$Abilities.add_elemental_ability("water")
-	$Abilities.add_elemental_ability('wind')
-	$Abilities.add_elemental_ability('fire')
-	$Abilities.add_elemental_ability('rock')
-	
 	# "target" is the Canvas item which material contains the shader.
 
 func _change_player_collision_to_sliding(change:bool = true):
@@ -49,3 +44,7 @@ func _on_hitbox_area_entered(area: Area2D) -> void:
 
 func player_hit():
 	print('ouch')
+
+
+func _on_power_selector_chosen_power(power: String) -> void:
+	$Abilities.add_elemental_ability(power)

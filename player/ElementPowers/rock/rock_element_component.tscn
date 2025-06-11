@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dq4ngvcvkjgmi"]
 
-[ext_resource type="Script" path="res://player/ElementPowers/rock/rock_element_component.gd" id="1_oq7ny"]
+[ext_resource type="Script" uid="uid://d01v1fd6j7y3j" path="res://player/ElementPowers/rock/rock_element_component.gd" id="1_oq7ny"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tekxv"]
 

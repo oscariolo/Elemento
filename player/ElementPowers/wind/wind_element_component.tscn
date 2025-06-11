@@ -1,6 +1,6 @@
 [gd_scene load_steps=28 format=3 uid="uid://yc51bpjeudun"]
 
-[ext_resource type="Script" path="res://player/ElementPowers/wind/wind_element_component.gd" id="1_ehids"]
+[ext_resource type="Script" uid="uid://b45qsoiox542a" path="res://player/ElementPowers/wind/wind_element_component.gd" id="1_ehids"]
 [ext_resource type="Texture2D" uid="uid://c2etqgcr5nuus" path="res://player/ElementPowers/wind/wind/WindCharge.png" id="2_opi13"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qp2px"]

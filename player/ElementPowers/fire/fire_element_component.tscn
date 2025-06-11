@@ -1,6 +1,6 @@
 [gd_scene load_steps=9 format=3 uid="uid://biuopq3a5e4lx"]
 
-[ext_resource type="Script" path="res://player/ElementPowers/fire/fire_element_component.gd" id="1_5t8kq"]
+[ext_resource type="Script" uid="uid://cencup60ea2w5" path="res://player/ElementPowers/fire/fire_element_component.gd" id="1_5t8kq"]
 [ext_resource type="Texture2D" uid="uid://b8cwpypgwxf38" path="res://player/ElementPowers/fire/assets/slice_animation/SFX301_01.png" id="2_ox6qg"]
 [ext_resource type="Texture2D" uid="uid://dp3higbp3ay53" path="res://player/ElementPowers/fire/assets/slice_animation/SFX301_02.png" id="3_isg40"]
 [ext_resource type="Texture2D" uid="uid://dofkyc0lx1f7l" path="res://player/ElementPowers/fire/assets/slice_animation/SFX301_03.png" id="4_hdn7q"]

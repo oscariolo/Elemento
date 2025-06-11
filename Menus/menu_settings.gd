@@ -39,6 +39,7 @@ func save_resolution_preference(resolution: Vector2i):
 
 func change_res_and_center(resolution:Vector2i):
 	DisplayServer.window_set_size(resolution)
+	
 	var centre_screen = DisplayServer.screen_get_position() + DisplayServer.screen_get_size()/2
 	var window_size = get_window().get_size_with_decorations()
 	get_window().set_position(centre_screen - window_size/2 )

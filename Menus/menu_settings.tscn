@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cccatn4s61y4q"]
 
 [ext_resource type="Theme" uid="uid://b83wwluo43jf" path="res://Menus/main_menu.tres" id="1_ogswf"]
-[ext_resource type="Script" path="res://Menus/menu_settings.gd" id="2_3i80t"]
+[ext_resource type="Script" uid="uid://dcphkd86lcroj" path="res://Menus/menu_settings.gd" id="2_3i80t"]
 
 [node name="MenuSettings" type="VBoxContainer"]
 texture_filter = 1

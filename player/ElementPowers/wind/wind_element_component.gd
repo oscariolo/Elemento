@@ -5,6 +5,7 @@ extends Element
 var current_boost_power: float = 0
 var charging_boost = false
 var has_boosted = false
+@export var FALL_SLOWDOWN = 50
 @export var velocity_x_reduce: float  = 0.5
 @export var movement_component: PlayerMovementComponent
 
@@ -14,7 +15,7 @@ func load_properties() -> void:
 
 func _physics_process(_delta: float) -> void:
 	if movement_component.player.is_on_floor():
-		has_boosted = false
+		_cancel_boost()
 	if !has_boosted: #check wether has boosted before can only once
 		if !movement_component.can_coyote_jump:  #check if didnt try a coyote jump or was just about touching the floor
 			if Input.is_action_just_pressed("jump") && movement_component.jumped && !movement_component.is_jumping: #checks for a double jump hence must have jumped and has released the basic jump
@@ -34,9 +35,9 @@ func start_charge():
 func charge_jump():
 	$AnimatedSprite2D.global_position = movement_component.player.global_position + Vector2(0,20)
 	$AnimatedSprite2D.play("charging_jump")
-	movement_component.set_motionless()
 	movement_component.set_effective_walk_speed(movement_component.MAX_WALK_SPEED*velocity_x_reduce)  
 	current_boost_power += lerp(current_boost_power,max_boost_jump_velocity,0.00005)
+	player.velocity.y = 50
 	if current_boost_power >= max_boost_jump_velocity:
 		current_boost_power = max_boost_jump_velocity
 	
@@ -51,4 +52,10 @@ func release_jump():
 	charging_boost = false
 	has_boosted = true
 	movement_component.set_default_motion()
-	
+
+func _cancel_boost():
+	current_boost_power = 0
+	charging_boost = false
+	has_boosted = false
+	movement_component.set_default_motion()
+	$AnimatedSprite2D.play("released_jump")

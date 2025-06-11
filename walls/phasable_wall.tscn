@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://da2o5ar75irqg"]
 
-[ext_resource type="Script" path="res://walls/phasable_wall.gd" id="1_savdv"]
+[ext_resource type="Script" uid="uid://c2p10306o4een" path="res://walls/phasable_wall.gd" id="1_savdv"]
 [ext_resource type="Texture2D" uid="uid://biaygt64fmvv3" path="res://walls/phasable_wall.png" id="2_w1ou0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ue86b"]

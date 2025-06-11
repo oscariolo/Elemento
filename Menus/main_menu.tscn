@@ -1,9 +1,9 @@
 [gd_scene load_steps=8 format=3 uid="uid://dcx7t20cr107b"]
 
-[ext_resource type="Script" path="res://Menus/main_menu.gd" id="1_3ng8l"]
-[ext_resource type="Shader" path="res://Menus/main_menu.gdshader" id="1_biqop"]
-[ext_resource type="Script" path="res://Menus/color_rect.gd" id="2_ov7cy"]
-[ext_resource type="FontFile" uid="uid://mxvrxnsvrnvd" path="res://fonts/ThaleahFat.ttf" id="3_x01dc"]
+[ext_resource type="Script" uid="uid://btxhi2wq2i38p" path="res://Menus/main_menu.gd" id="1_3ng8l"]
+[ext_resource type="Shader" uid="uid://cuaekonlxeejd" path="res://Menus/main_menu.gdshader" id="1_biqop"]
+[ext_resource type="Script" uid="uid://dj0hrm6oxwda8" path="res://Menus/color_rect.gd" id="2_ov7cy"]
+[ext_resource type="FontFile" uid="uid://mxvrxnsvrnvd" path="res://assets/fonts/ThaleahFat.ttf" id="3_x01dc"]
 [ext_resource type="PackedScene" uid="uid://blnu6ier5774y" path="res://Menus/menu_options.tscn" id="5_6a0kj"]
 [ext_resource type="PackedScene" uid="uid://cccatn4s61y4q" path="res://Menus/menu_settings.tscn" id="6_qd27b"]
 

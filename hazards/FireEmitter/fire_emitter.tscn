@@ -1,10 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0ha8xnibsgi2"]
+[gd_scene load_steps=3 format=3 uid="uid://d0ha8xnibsgi2"]
 
-[ext_resource type="Script" path="res://hazards/FireEmitter/fire_emitter.gd" id="1_fl4nr"]
+[ext_resource type="Script" uid="uid://b5pun1lkwg7cg" path="res://hazards/FireEmitter/fire_emitter.gd" id="1_fl4nr"]
+[ext_resource type="Texture2D" uid="uid://cp7x26bvslj3h" path="res://hazards/FireEmitter/fire_emitter.png" id="2_q27f5"]
 
 [node name="FireEmitter" type="Node2D"]
 script = ExtResource("1_fl4nr")
 
 [node name="EmitionCooldown" type="Timer" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_q27f5")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(-16, 0)
 
 [connection signal="timeout" from="EmitionCooldown" to="." method="_on_emition_cooldown_timeout"]
