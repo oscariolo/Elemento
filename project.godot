@@ -15,6 +15,10 @@ run/main_scene="res://Menus/main_menu.tscn"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Globals="*res://globals.gd"
+
 [dialogic]
 
 directories/dch_directory={
@@ -66,6 +70,11 @@ window/size/viewport_height=360
 window/size/resizable=false
 window/stretch/mode="canvas_items"
 window/vsync/vsync_mode=0
+
+[editor]
+
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
 
 [editor_plugins]
 

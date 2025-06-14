@@ -1,9 +1,9 @@
 extends Control
+class_name PowerSelector
 signal chosen_power(power:String)
-@export var availablePowers:Array
+@export var availablePowers:Array = ["Fire","Water","Rock","Wind"]
 
 func _ready()->void:
-	availablePowers = ["Fire","Water","Rock","Wind"]
 	for power in availablePowers:
 		var new_button = Button.new()
 		new_button.theme = load("res://themes/powerSelectorTheme.tres")
@@ -16,4 +16,6 @@ func _process(delta: float) -> void:
 
 func _on_button_pressed(power:String):
 	chosen_power.emit(power)
+	queue_free()
+	Globals.powerSelectorInstance = null
 	

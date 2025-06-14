@@ -46,5 +46,5 @@ func player_hit():
 	print('ouch')
 
 
-func _on_power_selector_chosen_power(power: String) -> void:
+func on_power_selector_chosen_power(power: String) -> void:
 	$Abilities.add_elemental_ability(power)

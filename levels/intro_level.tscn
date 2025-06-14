@@ -1,10 +1,10 @@
-[gd_scene load_steps=9 format=4 uid="uid://c53fw0pfqrro7"]
+[gd_scene load_steps=10 format=4 uid="uid://c53fw0pfqrro7"]
 
 [ext_resource type="PackedScene" uid="uid://bhawm7ey6kqju" path="res://player/player.tscn" id="1_jr4q2"]
 [ext_resource type="Texture2D" uid="uid://beg7bgqc23oio" path="res://environment/brick-ground.png" id="1_kmc2f"]
+[ext_resource type="Script" uid="uid://d2v3fi8svre3g" path="res://levels/intro_level.gd" id="1_m8opx"]
 [ext_resource type="PackedScene" uid="uid://bt4ed1q01dqqa" path="res://environment/tile_map_builder.tscn" id="2_u2sjx"]
 [ext_resource type="PackedScene" uid="uid://bldt4v0gshfkg" path="res://environment/wall_torch.tscn" id="3_7k16x"]
-[ext_resource type="PackedScene" uid="uid://gnu3nskoh6o6" path="res://Menus/power_selector.tscn" id="5_m8opx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tiknf"]
 texture = ExtResource("1_kmc2f")
@@ -51,7 +51,12 @@ sources/1 = SubResource("TileSetAtlasSource_tiknf")
 [sub_resource type="OccluderPolygon2D" id="OccluderPolygon2D_tym61"]
 polygon = PackedVector2Array(-319, 127, 319, 127, 319, 157, -320, 157)
 
-[node name="IntroLevel" type="Node"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_k665p"]
+radius = 30.0
+height = 94.0
+
+[node name="IntroLevel" type="Node2D"]
+script = ExtResource("1_m8opx")
 
 [node name="Background" type="TileMapLayer" parent="."]
 texture_filter = 1
@@ -82,16 +87,10 @@ position = Vector2(-139, 78)
 texture_filter = 1
 position = Vector2(-1, 8)
 
-[node name="PowerSelector" parent="." instance=ExtResource("5_m8opx")]
-anchors_preset = -1
-anchor_left = -0.498
-anchor_top = -0.525
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -0.279968
-offset_top = 1.52588e-05
-offset_right = 1.0
-offset_bottom = 6.0
-size_flags_vertical = 4
+[node name="Area2D" type="Area2D" parent="."]
 
-[connection signal="chosen_power" from="PowerSelector" to="Player" method="_on_power_selector_chosen_power"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(142, 36)
+shape = SubResource("CapsuleShape2D_k665p")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
