@@ -1,10 +1,13 @@
-[gd_scene load_steps=10 format=4 uid="uid://c53fw0pfqrro7"]
+[gd_scene load_steps=15 format=4 uid="uid://c53fw0pfqrro7"]
 
 [ext_resource type="PackedScene" uid="uid://bhawm7ey6kqju" path="res://player/player.tscn" id="1_jr4q2"]
 [ext_resource type="Texture2D" uid="uid://beg7bgqc23oio" path="res://environment/brick-ground.png" id="1_kmc2f"]
 [ext_resource type="Script" uid="uid://d2v3fi8svre3g" path="res://levels/intro_level.gd" id="1_m8opx"]
 [ext_resource type="PackedScene" uid="uid://bt4ed1q01dqqa" path="res://environment/tile_map_builder.tscn" id="2_u2sjx"]
 [ext_resource type="PackedScene" uid="uid://bldt4v0gshfkg" path="res://environment/wall_torch.tscn" id="3_7k16x"]
+[ext_resource type="Shader" uid="uid://dc6w11kxekuot" path="res://themesAndShaders/water_shader.gdshader" id="6_23a4i"]
+[ext_resource type="Texture2D" uid="uid://cxmesjcodwah1" path="res://icon.svg" id="7_4r0q5"]
+[ext_resource type="Texture2D" uid="uid://cq8c0osmwcnd1" path="res://player/assets/noise.png" id="7_pupne"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tiknf"]
 texture = ExtResource("1_kmc2f")
@@ -55,6 +58,26 @@ polygon = PackedVector2Array(-319, 127, 319, 127, 319, 157, -320, 157)
 radius = 30.0
 height = 94.0
 
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_4r5h8"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_pupne"]
+shader = ExtResource("6_23a4i")
+shader_parameter/offSet = 0.0
+shader_parameter/YDistortion = 1.0
+shader_parameter/waterNoise = ExtResource("7_pupne")
+shader_parameter/waterDistortionNoise = SubResource("NoiseTexture2D_4r5h8")
+shader_parameter/waterColor = Color(0.505882, 0, 0, 1)
+shader_parameter/colorCorection = 0.28
+shader_parameter/distortionForce = 0.011
+shader_parameter/WDBrightness = 0.65
+shader_parameter/WDFreq = 0.9
+shader_parameter/WDSize = 0.85
+shader_parameter/WDSpeed = 10.0
+shader_parameter/tiling = Vector2(1.855, 1.655)
+shader_parameter/offSetSpeed = Vector2(0.1, 0.1)
+shader_parameter/backGroundDirX = 0.015
+shader_parameter/backGroundDirY = -0.005
+
 [node name="IntroLevel" type="Node2D"]
 script = ExtResource("1_m8opx")
 
@@ -92,5 +115,11 @@ position = Vector2(-1, 8)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(142, 36)
 shape = SubResource("CapsuleShape2D_k665p")
+
+[node name="WaterReflector" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_pupne")
+position = Vector2(-4.50002, 165)
+scale = Vector2(4.97656, 0.375)
+texture = ExtResource("7_4r0q5")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
