@@ -199,4 +199,5 @@ max_boost_jump_velocity = 500.0
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_ywe36")
+animation = &"charging_jump"
 autoplay = "default"

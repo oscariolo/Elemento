@@ -13,10 +13,11 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		var number_of_abilites = $Player/Abilities.current_abilities.keys().size()
 		if(number_of_abilites < 4): #Control to not instantiate menu unnecesarly
 			var menuInstance = Globals.power_selector_menu.instantiate() as PowerSelector
-			menuInstance.availablePowers = menuInstance.availablePowers.filter(_filterAlreadyGottenPowers)
 			menuInstance.chosen_power.connect($Player.on_power_selector_chosen_power)
 			add_child(menuInstance)
+			menuInstance.availablePowers = menuInstance.availablePowers.filter(_filterAlreadyGottenPowers)
 			Globals.powerSelectorInstance = menuInstance
+			Globals.powerSelectorInstance.display()
 	
 
 func _filterAlreadyGottenPowers(power:String):

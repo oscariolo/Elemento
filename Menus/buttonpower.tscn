@@ -40,7 +40,8 @@ size_flags_vertical = 3
 text = "Example Text"
 horizontal_alignment = 1
 
-[node name="TextureRect" type="TextureRect" parent="Content/VBoxContainer"]
+[node name="PowerIcon" type="TextureRect" parent="Content/VBoxContainer"]
+texture_filter = 1
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("1_7maxt")

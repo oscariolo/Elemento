@@ -1,10 +1,19 @@
 extends Control
 class_name PowerSelector
 signal chosen_power(power:String)
-@export var availablePowers:Array = ["Fire","Water","Rock","Wind"]
+@export var powersButtonContent:Dictionary = {
+	"Fire": load("res://player/assets/fire.png"),
+	"Water": load("res://player/assets/fire.png"),
+	"Rock": load("res://player/assets/fire.png"),
+	"Wind": load("res://player/assets/fire.png"),
+}
+var availablePowers:Array
 var powerButton_resource = preload("res://Menus/buttonpower.tscn")
 
 func _ready()->void:
+	availablePowers = powersButtonContent.keys()
+
+func display()->void:
 	for power in availablePowers:
 		var new_button = powerButton_resource.instantiate() as Button
 		new_button.set_power_text(power)
@@ -18,4 +27,3 @@ func _on_button_pressed(power:String):
 	chosen_power.emit(power)
 	queue_free()
 	Globals.powerSelectorInstance = null
-	
